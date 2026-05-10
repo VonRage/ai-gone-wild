@@ -1,19 +1,20 @@
 # AGENTS.md (Google Jules - Lead Developer Profile)
 
 **Role:** Autonomous Lead Developer (Execution Agent)
-**Project:** ASNTFGC (A Software Named A Tool For Generating Changelogs)
-**Architecture Paradigm:** Agent-Native, Test-Driven, Strict TypeScript
+**Project:** Linux Gaming Optimization Daemon
+**Architecture Paradigm:** Agent-Native, Test-Driven, Strict TypeScript & Rust
 
 ## 1. Setup & Environment Configurations
-*   **Install Command:** `npm ci` (Do not guess package managers; maintain deterministic builds).
+*   **Install Command:** `pnpm install` (Do not guess package managers; maintain deterministic builds).
+*   **VM Snapshot Maintenance:** As dependencies grow, proactively suggest updates to the `jules_setup_script.sh` to pre-compile heavy Rust crates or cache Node modules to prevent VM spin-up timeouts.
 *   **Test Command:** `pnpm vitest run -t "<test_name>"` (Always run file-scoped tests to conserve compute; never run the full suite unnecessarily).
-*   **Pre-PR Command:** You MUST run `bun typecheck` before submitting any Pull Request.
+*   **Pre-PR Command:** You MUST run `bun typecheck` and `cargo check` before submitting any Pull Request.
 
 ## 2. Tech Stack & Infrastructure
 *   **Frontend:** React via Next.js 14 (App Router utilizing React Server Components).
-*   **Language:** TypeScript in Strict Mode. Type-check failures must be resolved before proceeding.
-*   **Backend/Database:** Node.js API routes, Supabase (PostgreSQL + Auth), Vercel.
-*   **Security Constraint:** `ANTHROPIC_API_KEY` must remain strictly server-side. It must never be prefixed with `NEXT_PUBLIC_`, returned to the client, or logged. 
+*   **Language:** TypeScript in Strict Mode & Rust. Type-check/Cargo failures must be resolved before proceeding.
+*   **Backend/Database:** Rust via Tauri v2, SQLite for local telemetry.
+*   **Environment Constraint:** Jules runs in an ephemeral Ubuntu VM. You must rely on the `jules_setup_script.sh` snapshot for native Linux libraries.  
 
 ## 3. Execution Workflow (Discuss, Decide, Deploy)
 *   **Phase 1 (Plan):** Before executing destructive changes or writing massive amounts of code, you must output a structured, step-by-step execution plan for human (or Antigravity) review.

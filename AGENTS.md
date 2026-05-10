@@ -20,6 +20,7 @@
 *   **Phase 1 (Plan):** Before executing destructive changes or writing massive amounts of code, you must output a structured, step-by-step execution plan for human (or Antigravity) review.
 *   **Phase 2 (TDD / Green Phase):** Implement the minimal application code required to make existing failing tests pass. Do not optimize, do not hallucinate unsolicited features, and do not over-engineer.
 *   **Phase 3 (Refactor):** Clean the code and reduce duplication only after tests are green. Ensure strict alignment with `/docs/adr/` (Architectural Decision Records).
+*   **Phase 4 (Regression):** Once a feature is manually verified by the user in the running application, you MUST author a regression test that codifies that specific working behavior to prevent future architectural drift.
 
 ## 4. DESIGN_SYSTEM.md Enforcement
 *   **Typography:** Use `font-mono` (or `var(--font-mono)`) exclusively. Never use Inter, Roboto, or system-ui.
